@@ -19,44 +19,30 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
     setInterval(App.fetch, 3000);
-    // TODO: Make sure the app loads data from the API
-    // continually, instead of just once at the start.
   },
-
-  // 0:
-  //   campus: "rfp"
-  //   created_at: "2022-08-11T04:03:35.893Z"
-  //   github_handle: "aaron-bowers"
-  //   message_id: 72121
-  //   roomname: "lobby"
-  //   text: "let's do this"
-  //   updated_at: "2022-08-11T04:03:35.893Z"
-  //   username: "A-A-Ron"
-  //   [[Prototype]]: Object
-
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
-      // examine the response from the server request:
       Messages._data = data;
-      console.log('data,', data);
-      Messages.checkDifferent(data);
-      // MessagesView.render();
-      // MessagesView.renderMessage(data[0]);
+      if (Messages.topMessageId === null) {
+        Messages.topMessageId = data[0].message_id;
+        MessagesView.render(Messages._data);
+      } else {
+        Messages.checkDifferent(Messages.topMessageId, data[0].message_id);
+        Messages.topMessageId = data[0].message_id;
+      }
+      Rooms._data = data;
+      Rooms.checkRooms();
+
+      console.log('in fetch', Rooms._rooms)
 
       callback()
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
-
-      //if it's setTimeout with an invocation, "too many requests"
-      //if it's setInterval here, it's immediate
     });
-    //if it's setTimeout here, invoked, it's immediate
   },
 
-  create: function(data) {
-    Parse.create(data)
-  },
+  // Allow users to create rooms and enter existing rooms - Rooms are defined by the .roomname property of messages, so you'll need to filter them somehow.
 
   startSpinner: function() {
     App.$spinner.show();

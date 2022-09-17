@@ -33,29 +33,3 @@ var FormView = {
   }
 
 };
-
-// Parse.readAll((data) => {
-//   // examine the response from the server request:
-//   Messages._data = data;
-//   MessagesView.render();
-//   // MessagesView.renderMessage(data[0]);
-
-//   callback()
-//   setTimeout(Parse.readAll(data), 5000);
-//   // TODO: Use the data to update Messages and Rooms
-//   // and re-render the corresponding views.
-// });
-
-// it('should send the message along with the request as a stringified object', function(done) {
-//   var message = {
-//     username: 'Mel Brooks',
-//     text: 'It\'s good to be the king',
-//     roomname: 'lobby'
-//   };
-
-//   Parse.create(message);
-//   ajaxOptions = typeof $.ajax.args[0][0] === 'object' ? $.ajax.args[0][0] : $.ajax.args[0][1];
-//   expect(ajaxOptions.data).to.be.a('string');
-//   expect(ajaxOptions.contentType).to.equal('application/json');
-//   done();
-// });

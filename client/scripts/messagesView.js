@@ -11,15 +11,14 @@ var MessagesView = {
   },
 
   render: function(data) {
-    // render all messages
-    // let data = Messages._data
-
+    // XSS attacks - sanitize our inputs
     var displayMessages = function(data) {
+      MessagesView.$chats.empty();
       var html = "";
       for (let i = 0; i < data.length; i++) {
         html += MessageView.render({name: data[i].username, message: data[i].text});
       }
-      $("#main").append(html);
+      MessagesView.$chats.append(html);
     };
 
     displayMessages(data);

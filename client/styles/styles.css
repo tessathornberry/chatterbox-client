@@ -88,3 +88,16 @@ form input[type=text] {
     background-color: #0090da;
 }
 
+#room button{
+    color: #ff00ea;
+}
+
+#room button:hover {
+    color: #3877ff;
+}
+
+#room button {
+    font-size: 24px;
+    background-color: green;
+    line-height: 13px;
+}
