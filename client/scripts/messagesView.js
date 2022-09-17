@@ -10,11 +10,23 @@ var MessagesView = {
     // when this view loads.
   },
 
-  render: function() {
-    // TODO: Render _all_ the messages.
+  render: function(data) {
+    // render all messages
+    // let data = Messages._data
+
+    var displayMessages = function(data) {
+      var html = "";
+      for (let i = 0; i < data.length; i++) {
+        html += MessageView.render({name: data[i].username, message: data[i].text});
+      }
+      $("#main").append(html);
+    };
+
+    displayMessages(data);
   },
 
   renderMessage: function(message) {
+    MessagesView.render(message)
     // TODO: Render a single message.
   },
 
